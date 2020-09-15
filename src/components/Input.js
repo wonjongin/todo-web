@@ -1,13 +1,19 @@
 import React, { useState } from "react";
-import { useCookies } from "react-cookie";
+import "./Input.css";
+import { useIndexedDB } from "react-indexed-db";
 
 function Input() {
+  const { add } = useIndexedDB("todo");
   const [todo, setTodo] = useState(null);
-  const [todos, setTodos, removeTodos] = useCookies(["TODOdata"]);
-  var inputdata;
   const Submit = () => {
-    setTodo(inputdata);
-    setTodos("TODOdata", todo);
+    add({ title: todo }).then(
+      (event) => {
+        console.log("Add todo: ", event.target.result);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   };
   return (
     <div>
