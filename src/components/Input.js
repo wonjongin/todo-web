@@ -8,7 +8,7 @@ function Input() {
   const Submit = () => {
     add({ title: todo }).then(
       (event) => {
-        console.log("Add todo: ", event.target.result);
+        console.log("Add todo: " + event.target.result);
       },
       (error) => {
         console.log(error);
